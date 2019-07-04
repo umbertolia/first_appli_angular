@@ -1,0 +1,28 @@
+<div class="card bg-light mb-5" style="max-width: 80%;">
+    <div class="card-header">InfosUser Component</div>
+    <div class="card-body">
+      <h5 class="card-title">{{infos.userName}} {{infos.userLastName}}</h5>
+      <h5 class="card-title">{{infos.userMail}}</h5>
+
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let tache of listeTaches; let i = index" [ngClass]="{'list-group-item':true, 'list-group-item-danger': tache.nomResponsable == '',  'list-group-item-success': tache.nomResponsable != ''}">
+          {{tache.nomTache}} <span class="badge badge-info">{{tache.dateTache|date:'dd/MM/yyyy'}}</span>   {{onFormatterLigneTache(tache.nomResponsable)}}
+          <button type="button" [hidden]="!tache.nomResponsable == ''" (click)="enleverTache(tache.id)">-</button>
+          <a [routerLink]="tache.id">details</a>
+        </li>
+      </ul>
+      <p></p>
+      <form #formTache="ngForm" (ngSubmit)="onAjouterTache(formTache)" >
+        <div class="form-group">
+          <label class="control-label">Nouvelle tâche </label><br>
+          <label>Nom Tache</label><input name="nomTache" ngModel required  type="text" />
+          <br>
+          <label>Nom Resp</label><input name="nomResponsable" ngModel  type="text"  />
+          <button type="submit" [disabled]="formTache.invalid"  class="btn btn-primary"  value="OK" name="Ajouter"> OK</button>
+        </div>
+      </form>
+
+      <button class="btn btn-success" (click)="this.persistTaches()">Enregister Taches</button>
+      <button class="btn btn-success" (click)="this.fetchTaches()">Recuperer Taches</button>
+</div>
+   Mise a jour  le {{this.derniereMAJ | async | date:'EEE, dd LLL yyyy'}}

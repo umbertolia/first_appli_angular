@@ -1,0 +1,17 @@
+<div class="card bg-light mb-5" style="max-width: 18rem;">
+  <div class="card-header">Commentaires Component</div>
+  <div class="card-body">
+
+    <form #formComments="ngForm"  >
+      <div class="form-group">
+        <label class="control-label">Compteur : {{compteur}}</label>
+        <p>
+        val : <input required="required" name="valeur" ngModel  type="number" [(ngModel)]="valeur" />
+        <button type="button" class="btn btn-dark" (click)="ajouter()" >+</button>
+        <button type="button" class="btn btn-secondary" (click)="diminuer()" >-</button>
+
+      </div>
+    </form>
+
+  </div>
+</div>
